@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#!/bin/bash
+
+# Load environment variables from .env file
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+fi
+
+sed -i "s/server [0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:9000/server $NEXTCLOUD_HOST:9000/g" nginx.conf
