@@ -21,6 +21,9 @@
 ### Generate a Self-Signed Certificate
  - cd tls
  - cat README.md
+### Update upstream with the correct network
+ - chmod +x configure
+ - ./configure
 ### Build app.
  - docker build -t nexcloud-fpm .
 ### Start app
