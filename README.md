@@ -25,6 +25,6 @@
  - chmod +x configure
  - ./configure
 ### Build app.
- - docker build -t nexcloud-fpm .
+ - docker build -t nextcloud-fpm .
 ### Start app
  - docker compose up -d

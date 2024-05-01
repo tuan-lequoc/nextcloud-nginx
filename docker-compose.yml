@@ -17,7 +17,7 @@ services:
       - db_data:/var/lib/mysql
 
   app:
-    image: nexcloud-fpm:latest
+    image: nextcloud-fpm:latest
     restart: always
       #ports:
       #- "9000:9000"
