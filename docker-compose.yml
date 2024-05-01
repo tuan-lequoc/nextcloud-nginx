@@ -27,10 +27,11 @@ services:
       ncnetwork:
         ipv4_address: ${NEXTCLOUD_HOST}
     volumes:
-      - nextcloud_data:/var/www/nextcloud
-      - nextcloud_config:/var/www/nextcloud/config
-      - nextcloud_apps:/var/www/nextcloud/apps
-      - nextcloud_db:/var/www/nextcloud/db
+      - nextcloud_data:${NEXTCLOUD_DATADIR}
+      - nextcloud_config:/var/www/nextcloud/config/
+      - nextcloud_apps:/var/www/nextcloud/apps/
+      - nextcloud_db:/var/www/nextcloud/db/
+      - nextcloud_source:/var/www/nextcloud/
 
   web:
     image: nginx:latest
@@ -45,7 +46,8 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./sites-enabled/nc-server.conf:/etc/nginx/sites-enabled/nc-server.conf:ro
       - ./tls:/etc/nginx/tls:ro
-      - nextcloud_data:/var/www/nextcloud
+      - nextcloud_source:/var/www/nextcloud/
+      - nextcloud_data:${NEXTCLOUD_DATADIR}
     depends_on:
       - app
 
@@ -59,6 +61,7 @@ volumes:
   nextcloud_config:
   nextcloud_apps:
   nextcloud_db:
+  nextcloud_source:
 
 networks:
   ncnetwork:
