@@ -1,6 +1,9 @@
 # Use an official PHP-FPM image as base
 FROM php:8.0-fpm
 
+# Set PHP configuration options
+RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/memory-limit.ini
+
 # Install system dependencies
 RUN apt-get update \
     && apt-get install -y \
