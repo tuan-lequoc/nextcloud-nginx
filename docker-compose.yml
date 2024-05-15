@@ -53,6 +53,10 @@ services:
 
 volumes:
   db_data:
+    driver_opts:
+      type: none
+      device: ${MYSQL_DATA_MOUNT}
+      o: bind
   nextcloud_data:
     driver_opts:
       type: none
