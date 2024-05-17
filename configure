@@ -5,4 +5,7 @@ if [ -f .env ]; then
     export $(grep -v '^#' .env | xargs)
 fi
 
-sed -i "s/server [0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:9000/server $NEXTCLOUD_HOST:9000/g" nginx.conf
+sed -i "s/server [0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:9000/server $NEXTCLOUD_HOST:9000/g" sites-enabled/nc-server.conf
+sed -i "s/\${NGINX_HTTPS_EXPOSE_PORT}/$NGINX_HTTPS_EXPOSE_PORT/g" sites-enabled/nc-server.conf
+sed -i "s/return 301 https:\/\/\$host:[0-9]\+\$request_uri;/return 301 https:\/\/\$host:$NGINX_HTTPS_EXPOSE_PORT\$request_uri;/g" sites-enabled/nc-server.conf
+
