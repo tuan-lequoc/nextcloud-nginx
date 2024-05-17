@@ -38,6 +38,9 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 RUN pecl install channel://pecl.php.net/xmlrpc-1.0.0RC3 \
     && docker-php-ext-enable xmlrpc
 
+# Enable OPcache extension
+RUN docker-php-ext-install opcache
+
 # Download and install Nextcloud
 RUN wget https://download.nextcloud.com/server/releases/latest.zip -O /tmp/nextcloud.zip \
     && unzip /tmp/nextcloud.zip -d /var/www \
