@@ -15,6 +15,7 @@ RUN apt-get update \
         wget \
         unzip \
         libsqlite3-dev \
+        cron \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -46,6 +47,16 @@ RUN wget https://download.nextcloud.com/server/releases/latest.zip -O /tmp/nextc
     && unzip /tmp/nextcloud.zip -d /var/www \
     && chown -R www-data:www-data /var/www/nextcloud \
     && rm /tmp/nextcloud.zip
+
+
+# Create a cron job file
+RUN echo "*/5 * * * * www-data php -f /var/www/nextcloud/cron.php" > /etc/cron.d/nextcloud-cron
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/nextcloud-cron
+
+# Apply cron job for the www-data user
+RUN crontab -u www-data /etc/cron.d/nextcloud-cron
 
 # Expose port
 EXPOSE 9000
