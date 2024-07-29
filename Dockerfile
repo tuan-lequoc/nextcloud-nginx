@@ -2,10 +2,10 @@
 FROM php:8.1-fpm
 
 # Set environment variables
-ENV NEXTCLOUD_VERSION 24.0.0
+ENV NEXTCLOUD_VERSION 29.0.4
 
 # Set PHP configuration options
-RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/memory-limit.ini
+RUN echo "memory_limit=512" > /usr/local/etc/php/conf.d/memory-limit.ini
 
 # Install system dependencies
 RUN apt-get update \

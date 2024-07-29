@@ -21,5 +21,9 @@
  - ./configure
 ### Build app.
  - docker build -t nextcloud-fpm .
+
+### Fetch configurations
+ - . ./populate_env.sh
+
 ### Start app
  - docker compose up -d
