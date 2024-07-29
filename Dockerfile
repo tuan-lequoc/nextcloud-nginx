@@ -1,5 +1,8 @@
-# Use an official PHP-FPM image as base
-FROM php:8.0-fpm
+# Use the official PHP 8.1-FPM image as the base image
+FROM php:8.1-fpm
+
+# Set environment variables
+ENV NEXTCLOUD_VERSION 24.0.0
 
 # Set PHP configuration options
 RUN echo "memory_limit=256M" > /usr/local/etc/php/conf.d/memory-limit.ini
@@ -43,7 +46,7 @@ RUN pecl install channel://pecl.php.net/xmlrpc-1.0.0RC3 \
 RUN docker-php-ext-install opcache
 
 # Download and install Nextcloud
-RUN wget https://download.nextcloud.com/server/releases/latest.zip -O /tmp/nextcloud.zip \
+RUN wget https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.zip -O /tmp/nextcloud.zip \
     && unzip /tmp/nextcloud.zip -d /var/www \
     && chown -R www-data:www-data /var/www/nextcloud \
     && rm /tmp/nextcloud.zip

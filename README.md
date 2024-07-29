@@ -7,12 +7,6 @@
 
 ## Set up:
 ### Update info for .env file
- - NEXTCLOUD_MOUNT=/data1/nextcloud
- - NEXTCLOUD_DATADIR=/data/nextcloud
- - MYSQL_ROOT_PASSWORD=
- - MYSQL_DATABASE=
- - MYSQL_USER=
- - MYSQL_PASSWORD=
  - MYSQL_HOST=11.11.0.8
  - #MYSQL_ALLOW_EMPTY_PASSWORD=yes
  - NEXTCLOUD_HOST=11.11.0.9
