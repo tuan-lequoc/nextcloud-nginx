@@ -46,6 +46,8 @@ services:
       - ./tls:/etc/nginx/tls:ro
       - nextcloud_source:/var/www/nextcloud/
       - nextcloud_data:${NEXTCLOUD_DATADIR}
+      - nextcloud_apps:/var/www/nextcloud/apps/
+      - nextcloud_config:/var/www/nextcloud/config/
     depends_on:
       - app
 
@@ -61,7 +63,15 @@ volumes:
       device: ${NEXTCLOUD_MOUNT}
       o: bind
   nextcloud_config:
+    driver_opts:
+      type: none
+      device: ${NEXTCLOUD_CONFIG_MOUNT}
+      o: bind
   nextcloud_apps:
+    driver_opts:
+      type: none
+      device: ${NEXTCLOUD_APPS_MOUNT}
+      o: bind
   nextcloud_db:
   nextcloud_source:
 
